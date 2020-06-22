@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/22/2020 10:24:14 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SBCI-1902"
+  DTS:CreatorName="SBCI\gavin"
+  DTS:DTSID="{F386EE97-30BE-4035-894D-238ED2C9F21D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.94"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{415D66D6-EDF6-4EFC-8E0D-5E70D2FA9925}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Delete ImportTable and Rebuild"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7A38F39F-2DBA-4D49-AEAC-60A260F64C14}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete ImportTable and Rebuild"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3164590D-8CBF-4A46-99A5-292F997B712A}"
+          SQLTask:SqlStatementSource="--If the import table exists, then delete it &#xA;&#xA;&#x9;DROP TABLE  if exists ImportProcess.ImportFromExcel&#xA;&#xA;--Create a table to hold the excel data found here:  &quot;Z:\Public\_SQL Tests\Testing SSIS - import process\SampleData.xlsx&quot;&#xA;&#xA;CREATE TABLE ImportProcess.ImportFromExcel (&#xA;&#x9;SBNumber int,&#xA;&#x9;EmployeeID varchar(50),&#xA;&#x9;StartDate date,&#xA;&#x9;FTE decimal (5,4),&#xA;&#x9;Primary Key(SBNumber,EmployeeID)&#xA;)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="224.8,41.6"
+          Id="Package\Delete ImportTable and Rebuild"
+          TopLeft="84.6666633023158,47.8400003801982" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

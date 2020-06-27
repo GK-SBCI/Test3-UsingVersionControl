@@ -12,8 +12,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="19"
-  DTS:VersionGUID="{0ACDB471-8E32-4F85-9CD8-71BB156B0BCB}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{D83C773C-93E0-44F1-B094-C590013F0D5E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -197,6 +197,55 @@
                           refId="Package\Foreach Loop Container\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                           dataType="i4"
                           lineageId="Package\Foreach Loop Container\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Data Flow Task\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -681,8 +730,13 @@
                   name="DateOfHireIsInTheFuture"
                   startId="Package\Foreach Loop Container\Data Flow Task\Conditional Split.Outputs[DateOfHireIsInTheFuture]" />
                 <path
-                  refId="Package\Foreach Loop Container\Data Flow Task.Paths[Excel Source Output]"
+                  refId="Package\Foreach Loop Container\Data Flow Task.Paths[Derived Column Output]"
                   endId="Package\Foreach Loop Container\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  name="Derived Column Output"
+                  startId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\Data Flow Task.Paths[Excel Source Output]"
+                  endId="Package\Foreach Loop Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
                   name="Excel Source Output"
                   startId="Package\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output]" />
                 <path
@@ -728,18 +782,18 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="224.8,41.6"
+          Size="225,42"
           Id="Package\Delete ImportTable and Rebuild"
           TopLeft="59.3333309756386,31.8933335867988" />
         <NodeLayout
-          Size="150.4,41.6"
+          Size="150,42"
           Id="Package\Foreach Loop Container\Data Flow Task"
           TopLeft="23.9999958674114,13.2800016695659" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="214.4,109.6"
-          Size="214.4,152.8"
+          PanelSize="214,110"
+          Size="214,153"
           Id="Package\Foreach Loop Container"
           TopLeft="114.666662110223,153.226667884403" />
         <EdgeLayout
@@ -783,85 +837,125 @@
     design-time-name="Package\Foreach Loop Container\Data Flow Task">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="180,41.6"
+          Size="180,42"
           Id="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination 1"
-          TopLeft="324.666653765573,269.013335471259" />
+          TopLeft="285.666653765573,357.013335471259" />
         <NodeLayout
-          Size="153.6,41.6"
+          Size="154,42"
           Id="Package\Foreach Loop Container\Data Flow Task\Conditional Split"
-          TopLeft="152.666660600239,158.080001256307" />
+          TopLeft="149.666660600239,234.080001256307" />
         <NodeLayout
-          Size="171.2,41.6"
+          Size="171,42"
           Id="Package\Foreach Loop Container\Data Flow Task\OLE DB Destination"
-          TopLeft="126.666661633386,269.706668810103" />
+          TopLeft="107.666661633386,354.706668810103" />
         <NodeLayout
-          Size="140,41.6"
+          Size="140,42"
           Id="Package\Foreach Loop Container\Data Flow Task\Excel Source"
           TopLeft="73.3333304193285,60.3200004793803" />
         <EdgeLayout
           Id="Package\Foreach Loop Container\Data Flow Task.Paths[GoodStartDates]"
-          TopLeft="229.466660600239,199.680001256307">
+          TopLeft="202.333327266906,276.080001256307">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-17.1999989668529,70.0266675537957"
+              EndConnector="-9.16666563351964,78.626667553796"
               Start="0,0"
-              End="-17.1999989668529,62.5266675537957">
+              End="-9.16666563351964,71.126667553796">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.0133337768978" />
+                    End="0,27.9357672840611" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,31.0133337768978"
-                    Point2="0,35.0133337768978"
-                    Point3="-4,35.0133337768978" />
+                    Point1="0,27.9357672840611"
+                    Point2="0,31.9357672840611"
+                    Point3="-4,31.9357672840611" />
                   <mssgle:LineSegment
-                    End="-13.1999989668529,35.0133337768978" />
+                    End="-5.16666563351964,31.9357672840611" />
                   <mssgle:CubicBezierSegment
-                    Point1="-13.1999989668529,35.0133337768978"
-                    Point2="-17.1999989668529,35.0133337768978"
-                    Point3="-17.1999989668529,39.0133337768978" />
+                    Point1="-5.16666563351964,31.9357672840611"
+                    Point2="-9.16666563351964,31.9357672840611"
+                    Point3="-9.16666563351964,35.9357672840611" />
                   <mssgle:LineSegment
-                    End="-17.1999989668529,62.5266675537957" />
+                    End="-9.16666563351964,71.126667553796" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-43.9700971396765,40.0133337768978,70.7401953125,9.7490234375"
+              BoundingBox="-39.9534304730098,36.9357672840611,70.7401953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Loop Container\Data Flow Task.Paths[Excel Source Output]"
-          TopLeft="143.333330419328,101.92000047938">
+          Id="Package\Foreach Loop Container\Data Flow Task.Paths[DateOfHireIsInTheFuture]"
+          TopLeft="250.999993933572,276.080001256307">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="86.1333301809101,56.1600007769267"
+              EndConnector="124.666659832001,80.933334214952"
               Start="0,0"
-              End="86.1333301809101,48.6600007769267">
+              End="124.666659832001,73.433334214952">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.0800003884633" />
+                    End="0,28.8726653109574" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,24.0800003884633"
-                    Point2="0,28.0800003884633"
-                    Point3="4,28.0800003884633" />
+                    Point1="0,28.8726653109574"
+                    Point2="0,32.8726653109574"
+                    Point3="4,32.8726653109574" />
                   <mssgle:LineSegment
-                    End="82.1333301809101,28.0800003884633" />
+                    End="120.666659832001,32.8726653109574" />
                   <mssgle:CubicBezierSegment
-                    Point1="82.1333301809101,28.0800003884633"
-                    Point2="86.1333301809101,28.0800003884633"
-                    Point3="86.1333301809101,32.0800003884633" />
+                    Point1="120.666659832001,32.8726653109574"
+                    Point2="124.666659832001,32.8726653109574"
+                    Point3="124.666659832001,36.8726653109574" />
                   <mssgle:LineSegment
-                    End="86.1333301809101,48.6600007769267" />
+                    End="124.666659832001,73.433334214952" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="6.06198225975034,37.8726653109574,112.5426953125,9.7978515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Foreach Loop Container\Data Flow Task\Derived Column"
+          TopLeft="160,142" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Data Flow Task.Paths[Excel Source Output]"
+          TopLeft="143.333330419328,102.32000047938">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="95.6666695806715,39.6799995206197"
+              Start="0,0"
+              End="95.6666695806715,32.1799995206197">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.8399997603099" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.8399997603099"
+                    Point2="0,19.8399997603099"
+                    Point3="4,19.8399997603099" />
+                  <mssgle:LineSegment
+                    End="91.6666695806715,19.8399997603099" />
+                  <mssgle:CubicBezierSegment
+                    Point1="91.6666695806715,19.8399997603099"
+                    Point2="95.6666695806715,19.8399997603099"
+                    Point3="95.6666695806715,23.8399997603099" />
+                  <mssgle:LineSegment
+                    End="95.6666695806715,32.1799995206197" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -871,39 +965,37 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Loop Container\Data Flow Task.Paths[DateOfHireIsInTheFuture]"
-          TopLeft="253.733327266906,199.680001256307">
+          Id="Package\Foreach Loop Container\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="239,184">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="160.933326498667,69.3333342149524"
+              EndConnector="-12.333339399761,50.080001256307"
               Start="0,0"
-              End="160.933326498667,61.8333342149524">
+              End="-12.333339399761,42.580001256307">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.1621996708157" />
+                    End="0,21.0400006281535" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,24.1621996708157"
-                    Point2="0,28.1621996708157"
-                    Point3="4,28.1621996708157" />
+                    Point1="0,21.0400006281535"
+                    Point2="0,25.0400006281535"
+                    Point3="-4,25.0400006281535" />
                   <mssgle:LineSegment
-                    End="156.933326498667,28.1621996708157" />
+                    End="-8.333339399761,25.0400006281535" />
                   <mssgle:CubicBezierSegment
-                    Point1="156.933326498667,28.1621996708157"
-                    Point2="160.933326498667,28.1621996708157"
-                    Point3="160.933326498667,32.1621996708157" />
+                    Point1="-8.333339399761,25.0400006281535"
+                    Point2="-12.333339399761,25.0400006281535"
+                    Point3="-12.333339399761,29.0400006281535" />
                   <mssgle:LineSegment
-                    End="160.933326498667,61.8333342149524" />
+                    End="-12.333339399761,42.580001256307" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="24.1953155930837,33.1621996708157,112.5426953125,9.7978515625"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
